@@ -1,3 +1,35 @@
+= To Use
+
+```
+bundle install
+yarn install
+gem install mailcatcher # cannot put in Gemfile due to rack incompatibilities
+bin/rails db:setup
+bin/webpacker
+bin/rails s
+```
+
+Navigate to http://localhost:3000/admin and log in as user `admin` password `p22ssw0rd!`
+
+Then navigate to `http://localhost:3000/support_requests`
+
+From here, add a response to a support ticket using rich text.  **BE SURE** to upload an image by dragging it into the rich text
+editor.
+
+When you save it, you should see your response rendered inline properly.
+
+*NOW* exit the server and go to the console: `bin/rails c`
+
+Find the `SupportRequest` you created and examine the response
+
+```
+bin/rails c
+console> puts SupportRequest.last.response.body.to_s; nil
+```
+
+You sould see that the `<img` tag uses `example.org` as its `src=`, not `localhost:3000`
+
+
 = The Depot Online Store
 
 This application implements an online store, with a catalog, cart, and orders.
