@@ -1,0 +1,20 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+<pre>
+<%= ApplicationController.renderer.defaults %>
+<%= SupportRequest.find(4).response.body %>
+</pre>
+<h1>New Requests</h1>
+<ul>
+  <% Array(@support_requests[true]).each do |support_request| %>
+    <%= render support_request %>
+  <% end %>
+</ul>
+<hr>
+<h1>Responded Requests</h1>
+<ul>
+  <% Array(@support_requests[false]).each do |support_request| %>
+    <%= render support_request %>
+  <% end %>
+</ul>

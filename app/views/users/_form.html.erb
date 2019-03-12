@@ -1,0 +1,61 @@
+<!-- START_HIGHLIGHT -->
+<div class="depot_form">
+
+<!-- END_HIGHLIGHT -->
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %>
+        prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- START_HIGHLIGHT -->
+  <h2>Enter User Details</h2>
+
+  <!-- END_HIGHLIGHT -->
+  <div class="field">
+<!-- START_HIGHLIGHT -->
+    <%= form.label :name, 'Name:' %>
+<!-- END_HIGHLIGHT -->
+<!-- START_HIGHLIGHT -->
+    <%= form.text_field :name, id: :user_name, size: 40 %>
+<!-- END_HIGHLIGHT -->
+  </div>
+
+  <div class="field">
+<!-- START_HIGHLIGHT -->
+    <%= form.label :password, 'Password:' %>
+<!-- END_HIGHLIGHT -->
+<!-- START_HIGHLIGHT -->
+    <%= form.password_field :password, id: :user_password, size: 40 %>
+<!-- END_HIGHLIGHT -->
+  </div>
+
+  <div class="field">
+<!-- START_HIGHLIGHT -->
+    <%= form.label :password_confirmation, 'Confirm:' %>
+<!-- END_HIGHLIGHT -->
+
+    <!-- START_HIGLIGHT -->
+    <%= form.password_field :password_confirmation,
+                            id: :user_password_confirmation,
+                            size: 40 %>
+    <!-- END_HIGLIGHT -->
+    
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<!-- START_HIGHLIGHT -->
+
+</div>
+<!-- END_HIGHLIGHT -->

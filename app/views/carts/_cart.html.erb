@@ -1,0 +1,35 @@
+<article>
+  <% if notice %>
+    <aside id="notice"><%= notice %></aside>
+  <% end %>
+
+<!-- START_HIGHLIGHT -->
+  <h2><%= t('.title') %></h2>
+<!-- END_HIGHLIGHT -->
+  <table>
+
+    <%= render(cart.line_items) %>
+    <tfoot>
+      <tr>
+        <th colspan="2">Total:</td>
+        <td class="price"><%= number_to_currency(cart.total_price) %></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="actions">
+<!-- START_HIGHLIGHT -->
+  <%= button_to t('.empty'), cart,
+# END_HIGHLIGHT
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+
+
+<!-- START_HIGHLIGHT -->
+  <%= button_to t('.checkout'), new_order_path(locale: I18n.locale),
+# END_HIGHLIGHT
+   
+                method: :get,
+                class: "checkout"%>
+  </div>
+</article>

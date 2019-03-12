@@ -1,0 +1,43 @@
+#START:relationships
+#START:asxml
+#START_HIGHLIGHT
+require 'active_model/serializers/xml'
+#END_HIGHLIGHT
+class Product < ApplicationRecord
+#START_HIGHLIGHT
+  include ActiveModel::Serializers::Xml
+#END_HIGHLIGHT
+#END:asxml
+  has_many :line_items
+#START_HIGHLIGHT
+  has_many :orders, through: :line_items
+#END_HIGHLIGHT
+  #...
+#END:relationships
+
+  before_destroy :ensure_not_referenced_by_any_line_item
+
+  validates :title, :description, :image_url, presence: true
+  validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+# #START:val3
+  validates :title, uniqueness: true
+  validates :image_url, allow_blank: true, format: {
+    with:    %r{\.(gif|jpg|png)\Z}i,
+    message: 'must be a URL for GIF, JPG or PNG image.'
+  }
+  validates :title, length: {minimum: 10}
+
+  private
+
+    # ensure that there are no line items referencing this product
+    def ensure_not_referenced_by_any_line_item
+      unless line_items.empty?
+        errors.add(:base, 'Line Items present')
+        throw :abort
+      end
+    end
+#START:relationships
+#START:asxml
+end
+#END:asxml
+#END:relationships
