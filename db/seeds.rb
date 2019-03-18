@@ -11,7 +11,7 @@ Product.create!(title: 'Rails, Angular, Postgres, and Bootstrap',
       embracing the full stack of web development, from styling with
       Bootstrap, building an interactive user interface with AngularJS, to
       storing data quickly and reliably in PostgreSQL. Take a holistic view of
-      full-stack development to create usable, high-performing applications,
+      full-stack devusernameelopment to create usable, high-performing applications,
       and learn to use these technologies effectively in a Ruby on Rails
       environment.
       </p>},
@@ -58,4 +58,4 @@ order = Order.create!(name:"Chris Jones",
 order.line_items.create!(product: Product.first, cart: Cart.create!)
 SupportRequest.create!(request: "My order hasn't shipped yet", order: order)
 
-User.create!(username: "admin", password: "p22ssw0rD!")
+User.create!(name: "admin", password: "p22ssw0rD!")
